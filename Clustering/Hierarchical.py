@@ -49,4 +49,13 @@ plt.title('Similarity clustering',fontsize=10,weight='bold')
 plt.tick_params ('both',width=2,labelsize=8)
 
 plt.tight_layout()
+
+
+cluster = AgglomerativeClustering(n_clusters=2, affinity='euclidean', linkage='ward')
+
+cluster.fit(table)
+labels = cluster.labels_
+
 plt.show() 
+display(labels)
+
