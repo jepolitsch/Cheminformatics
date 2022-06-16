@@ -14,12 +14,12 @@ def sanitize_smiles(smi):
     except:
         return (False)
 
-def preprocess_smiles(smi_file, outfile=None):
+def preprocess_smiles(smi_file, outfile=None, cols=["Smile", "ID"]):
     infile = pd.read_csv(smi_file, header=None)
-    infile.columns = ["Smile", "ID"]
+    infile.columns = cols
     infile.dropna(inplace=True)
     infile.drop_duplicates(keep=False,inplace=True)
-    sanitized = pd.DataFrame(data=None, columns=["Smile", "ID"])
+    sanitized = pd.DataFrame(data=None, columns=cols)
     for mol in infile.iloc:
         #print(mol['Smile'])
         smi_canon = sanitize_smiles(mol["Smile"])
